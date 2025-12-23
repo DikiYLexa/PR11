@@ -1,0 +1,119 @@
+﻿<Window x:Class="ImageGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Генератор изображений" 
+        Height="700" Width="500"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" 
+                   Text="Генератор изображений"
+                   FontSize="20" 
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,15"/>
+
+        <!-- Описание -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,10">
+            <TextBlock Text="Что нарисовать?"/>
+            <TextBox x:Name="PromptTextBox" 
+                     Text="Кот в шляпе"
+                     Height="50"
+                     TextWrapping="Wrap"
+                     Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <!-- Стиль -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,10">
+            <TextBlock Text="Стиль:"/>
+            <ComboBox x:Name="StyleComboBox" 
+                      SelectedIndex="0"
+                      Height="25"
+                      Margin="0,5,0,0">
+                <ComboBoxItem Content="Реализм"/>
+                <ComboBoxItem Content="Мультфильм"/>
+                <ComboBoxItem Content="Аниме"/>
+                <ComboBoxItem Content="Эскиз"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Цвета -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,10">
+            <TextBlock Text="Цвета:"/>
+            <WrapPanel Margin="0,5,0,0">
+                <RadioButton x:Name="PaletteBright" 
+                             Content="Яркие" 
+                             GroupName="Palette"
+                             IsChecked="True"
+                             Margin="0,0,10,0"/>
+                <RadioButton x:Name="PalettePastel" 
+                             Content="Пастель" 
+                             GroupName="Palette"/>
+            </WrapPanel>
+        </StackPanel>
+
+        <!-- Размер -->
+        <StackPanel Grid.Row="4" Margin="0,0,0,10">
+            <TextBlock Text="Размер:"/>
+            <WrapPanel Margin="0,5,0,0">
+                <RadioButton x:Name="RatioSquare" 
+                             Content="Квадрат" 
+                             GroupName="Ratio"
+                             IsChecked="True"
+                             Margin="0,0,10,0"/>
+                <RadioButton x:Name="RatioWide" 
+                             Content="Широкий" 
+                             GroupName="Ratio"/>
+            </WrapPanel>
+        </StackPanel>
+
+        <!-- Окошко для изображения -->
+        <Border Grid.Row="5" 
+                BorderBrush="Black" 
+                BorderThickness="1"
+                Background="LightGray"
+                Margin="0,0,0,10">
+            <Image x:Name="GeneratedImage" 
+                   Stretch="Uniform"/>
+        </Border>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="6" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center">
+            <Button x:Name="GenerateButton" 
+                    Content="Создать"
+                    Width="100"
+                    Height="30"
+                    Margin="5"
+                    Click="GenerateButton_Click"/>
+
+            <Button x:Name="SetWallpaperButton" 
+                    Content="Обои"
+                    Width="100"
+                    Height="30"
+                    Margin="5"
+                    Click="SetWallpaperButton_Click"
+                    IsEnabled="False"/>
+
+            <Button x:Name="SaveButton" 
+                    Content="Сохранить"
+                    Width="100"
+                    Height="30"
+                    Margin="5"
+                    Click="SaveButton_Click"
+                    IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</Window>
